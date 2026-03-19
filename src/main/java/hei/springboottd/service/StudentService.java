@@ -10,9 +10,13 @@ import java.util.stream.Collectors;
 @Service
 public class StudentService {
     public List<Student> studentList = new ArrayList<>();
-    public List<String>  addStudent(List <Student> studentstoadd) {
+    public List<Student>  addStudent(List <Student> studentstoadd) {
         studentList.addAll(studentstoadd);
-        return studentList.stream()
+        return studentList;
+    }
+    public List<String> getStudents() {
+        return studentList
+                .stream()
                 .map(Student::getFirstName)
                 .toList();
     }
