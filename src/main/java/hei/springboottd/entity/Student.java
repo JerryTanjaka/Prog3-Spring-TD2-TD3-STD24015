@@ -3,16 +3,11 @@ package hei.springboottd.entity;
 
 public class Student {
     private String reference;
-    private String FirstName;
-    private String LastName;
-    private int name;
+    private String firstName;
+    private String lastName;
+    private int age;
 
-    public Student(String reference, String firstName, String lastName, int name) {
-        this.reference = reference;
-        FirstName = firstName;
-        LastName = lastName;
-        this.name = name;
-    }
+    public Student(){};
 
     public String getReference() {
         return reference;
@@ -22,27 +17,27 @@ public class Student {
         this.reference = reference;
     }
 
-    public int getName() {
-        return name;
-    }
-
-    public void setName(int name) {
-        this.name = name;
-    }
-
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        this.lastName = lastName;
     }
 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        FirstName = firstName;
+        this.firstName = firstName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }
