@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 public class StudentController {
@@ -34,12 +33,28 @@ public class StudentController {
         }
     }
     @GetMapping("/students")
-    public String getStudents(@RequestHeader("Accept") String acceptHeader ) {
-        if(acceptHeader.toLowerCase().trim().contains("text/plain")) {
-            return studentService.getStudents().toString();
-        }else{
-            return "format non supporté";
+    public ResponseEntity<?> getStudents(@RequestHeader(value = "Accept", required = false) String accept) {
 
+        if (accept == null) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("Accept header is required");
+        }
+        try {
+            if (accept.equals("text/plain")) {
+                String names = studentService.getStudentNames();
+                return ResponseEntity.ok(names);
+            } else if (accept.equals("application/json")) {
+                return ResponseEntity.ok(studentService.getStudents());
+            } else {
+                return ResponseEntity
+                        .status(HttpStatus.NOT_IMPLEMENTED)
+                        .body("Format not supported");
+            }
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Server error");
         }
     }
 }

@@ -14,10 +14,12 @@ public class StudentService {
         studentList.addAll(studentstoadd);
         return studentList;
     }
-    public List<String> getStudents() {
-        return studentList
-                .stream()
+    public List<Student> getStudents() {
+        return studentList;
+    }
+    public String getStudentNames() {
+        return studentList.stream()
                 .map(Student::getFirstName)
-                .toList();
+                .collect(Collectors.joining(", "));
     }
 }
