@@ -1,2 +1,53 @@
-GET localhost:8080/students
+### 1. GET /welcome (OK)
+GET http://localhost:8080/welcome?name=Jerry
 Accept: text/plain
+
+###
+
+### 1. GET /welcome (ERROR - missing name)
+GET http://localhost:8080/welcome
+Accept: text/plain
+
+###
+
+### 2. POST /students (CREATE)
+POST http://localhost:8080/students
+Content-Type: application/json
+
+[
+  {
+    "reference": "STD001",
+    "firstName": "Jerry",
+    "lastName": "Tanjaka",
+    "age": 20
+  },
+  {
+    "reference": "STD002",
+    "firstName": "Anna",
+    "lastName": "Rakoto",
+    "age": 22
+  }
+]
+
+###
+
+### 3. GET /students (TEXT)
+GET http://localhost:8080/students
+Accept: text/plain
+
+###
+
+### 3. GET /students (JSON)
+GET http://localhost:8080/students
+Accept: application/json
+
+###
+
+### 3. GET /students (ERROR - missing header)
+GET http://localhost:8080/students
+
+###
+
+### 3. GET /students (ERROR - unsupported format)
+GET http://localhost:8080/students
+Accept: application/xml
