@@ -18,16 +18,16 @@ public class StudentController {
         this.studentService = studentService;
     }
     @PostMapping("/students")
-    public List<Student> createStudent(@RequestBody List<Student> newStudents) {
+    public String createStudent(@RequestBody List<Student> newStudents) {
         return studentService.addStudent(newStudents);
     }
     @GetMapping("/students")
-    public String getStudents(@RequestHeader("Accept") String acceptHeader ) {
-        if(acceptHeader.toLowerCase().trim().contains("text/plain")) {
-            return studentService.getStudents().toString();
-        }else{
-            return "format non supporté";
+    public String getStudents(@RequestHeader("Accept") String acceptHeader) {
 
+        if (acceptHeader.toLowerCase().contains("text/plain")) {
+            return studentService.getStudentNames();
+        } else {
+            return "Format non supporté";
         }
     }
 }
