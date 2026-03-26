@@ -26,4 +26,5 @@ public class WelcomeController {
                 .status(HttpStatus.OK)
                 .body(welcomeService.getWelcomeMessage(name));
     }
+
 }

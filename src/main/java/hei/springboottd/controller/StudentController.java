@@ -15,11 +15,12 @@ import java.util.List;
 @RestController
 public class StudentController {
     private final StudentService studentService;
+
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
     @PostMapping("/students")
-    public ResponseEntity<List<Student>> addStudents(@RequestBody List<Student> students) {
+    public ResponseEntity<?> addStudents(@RequestBody List<Student> students) {
         try {
             List<Student> allStudents = studentService.addStudent(students);
             return ResponseEntity
@@ -29,7 +30,7 @@ public class StudentController {
         } catch (RuntimeException e) {
             return ResponseEntity
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .build();
+                    .body(e.getMessage());
         }
     }
     @GetMapping("/students")
