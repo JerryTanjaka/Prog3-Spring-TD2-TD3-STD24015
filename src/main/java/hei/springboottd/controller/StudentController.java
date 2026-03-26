@@ -26,7 +26,7 @@ public class StudentController {
                     .status(HttpStatus.CREATED)
                     .body(allStudents);
 
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             return ResponseEntity
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .build();
